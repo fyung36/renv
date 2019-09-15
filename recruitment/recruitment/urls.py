@@ -21,6 +21,7 @@ from django.conf import settings
 from django.conf.urls.static import static
 from django.conf.urls import url
 
+
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', views.Home.as_view(), name="home"),
@@ -29,8 +30,8 @@ urlpatterns = [
     url(r'^add-applicant/', views.AddApplicant.as_view()),
 ]
 
-# if settings.DEBUG:
-#      urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
-#      urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
-#
-# urlpatterns = format_suffix_patterns(urlpatterns)
+if settings.DEBUG:
+    urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
+    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+
+urlpatterns = format_suffix_patterns(urlpatterns)
