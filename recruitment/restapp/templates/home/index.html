@@ -1,0 +1,49 @@
+{% load static %}
+
+<html>
+  <head>
+    <link href="{% static 'home/index.css' %}" rel="stylesheet" type="text/css" />
+  </head>
+  <body>
+    <div class="navbar" >
+      <div class="navbar-header" >
+        JOB SEARCH APP
+      </div>
+      <a class="add-applicant" href="/applicant-form/">
+        Apply
+      </a>
+    </div>
+    <div class="search-bar" >
+      <input
+        type="text"
+        class="search-input"
+        placeholder="search"
+      />
+      <select class="search-category">
+        <option>First name</option>
+        <option>Last name</option>
+        <option>Age </option>
+      </select>
+      <div>
+        <a class="search-button" href="/">
+          Search
+        </a>
+      </div>
+    </div>
+    <div class="list-header" >
+      List of all applicants
+    </div>
+    <div class="all-applicants" >
+      {% for applicant in allApplicants %}
+          <div class="applicant" >
+            <div class="applicant-name" >
+              {{applicant.FirstName}} {{applicant.LastName}}
+            </div>
+          </div>
+      {% endfor %}
+    </div>
+  </body>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.19.0/axios.min.js"></script>
+  <script src="{% static 'home/index.js' %}"></script>
+</html>
