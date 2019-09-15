@@ -7,7 +7,7 @@
   <body>
     <div class="navbar" >
       <div class="navbar-header" >
-        JOB SEARCH APP
+        <a href="/" class="navbar-home" >JOB SEARCH APP</a>
       </div>
       <a class="add-applicant" href="/applicant-form/">
         Apply
@@ -16,28 +16,33 @@
     <div class="search-bar" >
       <input
         type="text"
+        id="search-input"
         class="search-input"
         placeholder="search"
       />
-      <select class="search-category">
-        <option>First name</option>
-        <option>Last name</option>
-        <option>Age </option>
+      <select
+        class="search-category"
+        id="search-based-on"
+      >
+        <option value="FirstName">First name</option>
+        <option value="LastName">Last name</option>
+        <option value="Age">Age</option>
       </select>
-      <div>
-        <a class="search-button" href="/">
-          Search
-        </a>
+      <div class="search-button" onclick="searchForApplicant()">
+        Search
       </div>
     </div>
     <div class="list-header" >
       List of all applicants
     </div>
+    {% if searchResult == True %}
+      Search Results
+    {% endif %}
     <div class="all-applicants" >
       {% for applicant in allApplicants %}
           <div class="applicant" >
             <div class="applicant-name" >
-              {{applicant.FirstName}} {{applicant.LastName}}
+              {{applicant.FirstName}} {{applicant.LastName}} - {{applicant.Age}} - {{applicant.Job_Position}}
             </div>
           </div>
       {% endfor %}

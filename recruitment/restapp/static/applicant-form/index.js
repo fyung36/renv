@@ -1,5 +1,4 @@
 function Submit(){
-
   let applicantData = {
     FirstName: GetInputValue('firstname'),
     LastName: GetInputValue('lastname'),

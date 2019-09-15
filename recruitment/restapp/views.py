@@ -1,6 +1,8 @@
+from rest_framework.decorators import api_view,permission_classes
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from .controllers.ApplicantController import ApplicantController
+from rest_framework.permissions import IsAuthenticated,AllowAny
 from django.shortcuts import render
 from rest_framework import filters
 # Create your views here.
@@ -39,14 +41,18 @@ class ApplicantForm(APIView):
 
 class AddApplicant(APIView):
 
+    @api_view(["GET"])
+    @permission_classes([IsAuthenticated])
     def get(self, request):
         context = {
             'result': 'the result'
         }
         return Response(context)
 
+    @api_view(["POST"])
+    @permission_classes([AllowAny])
     def post(self, request, format=None):
         applicantData = request.data['applicantData']
         applicantController = ApplicantController()
         addedApplicant = applicantController.AddApplicant(applicantData)
-        return addedApplicant
+        return (addedApplicant)
