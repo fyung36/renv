@@ -4,7 +4,7 @@ function Submit(){
     Job_title: GetInputValue('Jobtitle'),
     Job_Description: GetInputValue('JobDescription'),
   }
-  axios.post('/add-applicant/', {JobData: JobData}).then((response) => {
+  axios.post('/add-jobs/', {JobData: JobData}).then((response) => {
     location.href = '/'
   })
   .catch((error) => {

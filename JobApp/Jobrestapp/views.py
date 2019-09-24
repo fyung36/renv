@@ -83,7 +83,7 @@ class AddJob(APIView):
         return Response(context)
 
     def post(self, request, format=None):
-        PostjobData = request.data['JobData']
+        postjobData = request.data['JobData']
         postjobcontroller = Postjobcontroller()
-        addedApplicant = postjobcontroller.
+        addedApplicant = postjobcontroller.Addjobs(postjobData)
         return addedApplicant
