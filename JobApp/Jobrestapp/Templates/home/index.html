@@ -9,10 +9,11 @@
       <div class="navbar-header" >
 	  <a href="/" class="navbar-home" >HOME </a>
 	  <a href="/" class="navbar-contact" >| CONTACT US </a>
-        <a href="/" class="navbar-home-search" >| POST A JOB  </a>
+        <a href="/Post-a-job/" class="navbar-home-search" >| POST A JOB  </a>
+
+
       </div>
-    </div>
-    <div class="search-bar" >
+        <div class="search-bar" style="float: right">
       <input
         type="text"
         id="search-input"
@@ -30,6 +31,7 @@
       <div class="search-button" onclick="searchForApplicant()">
         Search
       </div>
+    </div>
     </div>
     <br>
     <h1 style="font-size: 30px; font-weight: bold">
@@ -54,7 +56,6 @@
           <div class="jobs" >
               {{alljob.Job_title}}
           </div>
-
           <div class="job_desc">
             {{alljob.Job_Description}} <br><a class="add-applicant2" href="/applicant-form/" style="float: right; clear: both; text-decoration: none;"> Apply </a>
           </div>
@@ -74,7 +75,7 @@
 
           {% for applicant in allApplication.applicant %}
             <div class="job_desc">
-                {{applicant.FirstName}} <a class="add-applicant2" href="/applicant-form/"> Apply </a>
+                {{applicant.Firstname}}
             </div>
           {% endfor %}
 

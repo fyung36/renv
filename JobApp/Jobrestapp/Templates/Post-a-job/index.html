@@ -5,14 +5,15 @@
     <link href="{% static 'applicant-form/index.css' %}" rel="stylesheet" type="text/css" />
   </head>
   <body>
-    <div class="navbar" >
-      <div class="navbar-header" >
-        <a href="/" class="navbar-home" style="float: left; font-size: 16px; padding: 2rem;" > Home </a> - Job Posting Form
+     <div class="navbar" style="float: left; background-color: rgb(24, 93, 131); width: 100%; border-radius: 1rem; padding: 2rem 0 2rem 0;" >
+      <div class="navbar-header">
+        <a href="/" class="navbar-home" style="font-size: 20px; margin-left: 2rem;">JOB APP</a>
       </div>
-    </div>
+     </div>
+         <h1 style="font-size:30px">POST A JOB</h1>
     <div class="application-form" >
-      <input id="Jobtitle" class="form-input" placeholder="Job Tirle" type="text"/>
-      <input id="Job_description" class="form-input" placeholder="Job DescriptionL" type="text"/>
+      <input id="Jobtitle" class="form-input" placeholder="Job Title" type="text"/>
+      <textarea id="Job_description" class="form-input" placeholder="Job Description" rows="6" type="text"></textarea>
       <div class="submit-btn" onclick="Submit()" >
         Submit
       </div>
