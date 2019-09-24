@@ -1,22 +1,89 @@
-from django.shortcuts import render
-from rest_framework import viewsets
-from .serializers import Applicantserializers
-from .models import Applicant
 from rest_framework.views import APIView
+from .models import Applicant, Post_Job
+from rest_framework.response import Response
+from .controllers.AppliciantController import ApplicantController, Postjobcontroller, Applicationcontroller
+from django.shortcuts import render
+from django.db.models import Q
 
-# Create your views here.
+class Home(APIView):
+    def get(self, request):
+        applicantController = ApplicantController()
+        jobController = Postjobcontroller()
+        alljobs = jobController.getAllJobs()
+        applycontrollers = Applicationcontroller
+        allApplictions = applycontrollers.getApplication(self)
+        allApplicants = applicantController.getAllApplicants()
+        context = {
+            'allApplicants': allApplicants,
+            'alljobs': alljobs,
+            'allApplication':allApplictions
+        }
+        return render(request, 'home/index.html', context)
 
-# class Home(APIView):
-class Home(viewsets.ModelViewSet):
+class SearchResultsView(APIView):
+    model = Applicant
+    template_name = 'search_results.html'
 
-    queryset = Applicant.objects.all().order_by('-FirstName')
-    serializer_class = Applicantserializers
+    def get_queryset(self): # new
+        query = self.request.GET.get('q')
+        object_list = Applicant.objects.filter(
+            Q(Firstname__icontains=query) | Q(LastName__icontains=query) | Q(Email__icontains=query) | Q(Job_Position__icontains=query)
+        )
+        context = {
+            'filter' : object_list,
 
-class Add
-    # def get(self, request):
-    #     applicantController = ApplicantController()
-    #     allApplicants = applicantController.getAllApplicants()
-    #     context = {
-    #         'allApplicants': allApplicants
-    #     }
-    #     return render(request, 'home/index.html', context)
+        }
+
+        return render(render,'home/index.html', context)
+
+class Search(APIView):
+    def get(self, request):
+        searchBasedOn = request.GET.get('searchBasedOn', '')
+        searchInputValue = request.GET.get('searchInputValue', '')
+        applicantController = ApplicantController()
+        filters = {
+            searchBasedOn: searchInputValue
+        }
+        allApplicants = applicantController.SearchForApplicants(searchBasedOn, searchInputValue)
+        context = {
+            'allApplicants': allApplicants,
+            'searchResult': True,
+            'filters': filters
+        }
+        return render(request, 'home/index.html', context)
+
+class ApplicantForm(APIView):
+    def get(self, request):
+        context = {
+            'result': 'default name'
+        }
+        return render(request, 'applicant-form/index.html', context)
+
+class AddApplicant(APIView):
+
+    def get(self, request):
+        context = {
+            'result': 'the result'
+        }
+        return Response(context)
+
+    def post(self, request, format=None):
+        applicantData = request.data['applicantData']
+        applicantController = ApplicantController()
+        addedApplicant = applicantController.AddApplicant(applicantData)
+        return addedApplicant
+
+
+class AddJob(APIView):
+
+    def get(self, request):
+        context = {
+            'result': 'the result'
+        }
+        return Response(context)
+
+    def post(self, request, format=None):
+        PostjobData = request.data['JobData']
+        postjobcontroller = Postjobcontroller()
+        addedApplicant = postjobcontroller.
+        return addedApplicant

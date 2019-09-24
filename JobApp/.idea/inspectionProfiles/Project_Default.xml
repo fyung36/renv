@@ -33,6 +33,7 @@
         <list>
           <option value="flaskblog.forms.ValidationError" />
           <option value="flaskblog.models.f" />
+          <option value="django_heroku" />
         </list>
       </option>
     </inspection_tool>
