@@ -6,7 +6,7 @@ class ApplicantForm(forms.ModelForm):
         model = Applicant
         fields = ['FirstName', 'LastName', 'Email', 'Age', 'Job_Position']
 
-class Postjobform:
-    class Mera:
+class Postjobform(forms.ModelForm):
+    class Meta:
         model = Post_Job
-        fields = {'Job_title','Job_Description'}
+        fields = ['Job_title','Job_Description']

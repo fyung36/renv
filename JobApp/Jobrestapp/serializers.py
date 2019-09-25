@@ -11,4 +11,4 @@ class Postserializers(serializers.ModelSerializer):
 
     class Meta:
         model = Post_Job
-        fields = {'Job_title','Job_Description'}
+        fields = ('Job_title','Job_Description')
